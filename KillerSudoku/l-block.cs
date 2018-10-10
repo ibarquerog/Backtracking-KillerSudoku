@@ -10,10 +10,7 @@ namespace KillerSudoku
     {
         public l_block()
         {
-            int pos1 = 0;
-            int pos2 = 0;
-            int pos3 = 0;
-            int pos4 = 0;
+            
         }
     }
 }   

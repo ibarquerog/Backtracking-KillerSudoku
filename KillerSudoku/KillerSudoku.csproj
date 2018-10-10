@@ -52,10 +52,15 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Grid.cs" />
+    <Compile Include="J-block.cs" />
     <Compile Include="l-block.cs" />
+    <Compile Include="L_block.cs" />
+    <Compile Include="O-block.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="S-block.cs" />
     <Compile Include="SingleBlock.cs" />
+    <Compile Include="Z-Block.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

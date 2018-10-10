@@ -8,3 +8,13 @@ c:\users\ignacio\source\repos\KillerSudoku\KillerSudoku\obj\Debug\KillerSudoku.c
 c:\users\ignacio\source\repos\KillerSudoku\KillerSudoku\obj\Debug\KillerSudoku.exe
 c:\users\ignacio\source\repos\KillerSudoku\KillerSudoku\obj\Debug\KillerSudoku.pdb
 c:\users\ignacio\source\repos\KillerSudoku\KillerSudoku\obj\Debug\KillerSudoku.Form1.resources
+C:\Users\Ignacio\Source\Repos\Backtracking-KillerSudoku\KillerSudoku\bin\Debug\KillerSudoku.exe.config
+C:\Users\Ignacio\Source\Repos\Backtracking-KillerSudoku\KillerSudoku\bin\Debug\KillerSudoku.exe
+C:\Users\Ignacio\Source\Repos\Backtracking-KillerSudoku\KillerSudoku\bin\Debug\KillerSudoku.pdb
+C:\Users\Ignacio\Source\Repos\Backtracking-KillerSudoku\KillerSudoku\obj\Debug\KillerSudoku.csprojAssemblyReference.cache
+C:\Users\Ignacio\Source\Repos\Backtracking-KillerSudoku\KillerSudoku\obj\Debug\KillerSudoku.Form1.resources
+C:\Users\Ignacio\Source\Repos\Backtracking-KillerSudoku\KillerSudoku\obj\Debug\KillerSudoku.Properties.Resources.resources
+C:\Users\Ignacio\Source\Repos\Backtracking-KillerSudoku\KillerSudoku\obj\Debug\KillerSudoku.csproj.GenerateResource.cache
+C:\Users\Ignacio\Source\Repos\Backtracking-KillerSudoku\KillerSudoku\obj\Debug\KillerSudoku.csproj.CoreCompileInputs.cache
+C:\Users\Ignacio\Source\Repos\Backtracking-KillerSudoku\KillerSudoku\obj\Debug\KillerSudoku.exe
+C:\Users\Ignacio\Source\Repos\Backtracking-KillerSudoku\KillerSudoku\obj\Debug\KillerSudoku.pdb
