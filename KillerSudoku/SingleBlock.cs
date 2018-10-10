@@ -5,19 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
+namespace KillerSudoku
+{
     class SingleBlock
     {
-    private int value;
-    private int x;
-    private int y;
-    private String figure;
+        private int figValue;
+        private string operation;
+        private Cage Cage;
 
-    public SingleBlock(int x, int y)
-    {
-        this.value = 0;
-        this.x = x;
-        this.y = y;
-        this.figure = null;
+        public SingleBlock(Cage Cage)
+        {
+            this.Cage = Cage; 
+        }
     }
 }
