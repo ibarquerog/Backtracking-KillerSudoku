@@ -1,4 +1,7 @@
-﻿namespace KillerSudoku
+﻿using System;
+using System.Collections.Generic;
+
+namespace KillerSudoku
 {
     partial class Form1
     {
@@ -26,6 +29,26 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
+        public static List<List<int>> randomNumbersForSudoku(int matrixSize)
+        {
+            Random random = new Random();
+            int randomNumber;
+            List<List<int>> listNumbers = new List<List<int>>();
+            for (int i = 0; i < matrixSize; i++)
+            {
+                List<int> newList = new List<int>();
+                listNumbers.Add(newList);
+                for (int j = 0; j < matrixSize; j++)
+                {
+                    do
+                    {
+                        randomNumber = random.Next(1, matrixSize);
+                    } while (listNumbers[i].Contains(randomNumber));
+                    listNumbers[i].Add(randomNumber);
+                }
+            }
+            return listNumbers;
+        }
         private void InitializeComponent()
         {
             this.buttonGenerar = new System.Windows.Forms.Button();
@@ -58,4 +81,3 @@
         private System.Windows.Forms.Button buttonGenerar;
     }
 }
-
