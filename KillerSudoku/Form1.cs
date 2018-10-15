@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace KillerSudoku
 {
     public partial class Form1 : Form
@@ -15,6 +16,27 @@ namespace KillerSudoku
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public static List<List<int>> randomNumbersForSudoku(int matrixSize)
+        {
+            Random random = new Random();
+            int randomNumber;
+            List<List<int>> listNumbers = new List<List<int>>();
+            for (int i = 0; i < matrixSize; i++)
+            {
+                List<int> newList = new List<int>();
+                listNumbers.Add(newList);
+                for (int j = 0; j < matrixSize; j++)
+                {
+                    do
+                    {
+                        randomNumber = random.Next(1, matrixSize);
+                    } while (listNumbers[i].Contains(randomNumber));
+                    listNumbers[i].Add(randomNumber);
+                }
+            }
+            return listNumbers;
         }
 
         private void buttonGenerar_Click(object sender, EventArgs e)
