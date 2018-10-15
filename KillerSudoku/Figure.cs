@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace KillerSudoku
 {
-    class L_block
+    class Figure
     {
-        private int figValue;
+        private int figResult;
         private string operation;
         private Cage Cage1;
         private Cage Cage2;
         private Cage Cage3;
         private Cage Cage4;
 
-        public L_block(Cage Cage1, Cage Cage2, Cage Cage3, Cage Cage4)
+        public Figure(Cage Cage1, Cage Cage2, Cage Cage3, Cage Cage4)
         {
             this.Cage1 = Cage1;
             this.Cage2 = Cage2;
