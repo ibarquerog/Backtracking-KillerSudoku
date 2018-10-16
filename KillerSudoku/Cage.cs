@@ -13,6 +13,8 @@ namespace KillerSudoku
         private string figure;
         private int figureID;
         private Color color;
+        private int x;
+        private int y;
 
         public Cage()
         {
@@ -25,5 +27,7 @@ namespace KillerSudoku
         public string Figure { get => figure; set => figure = value; }
         public int FigureID { get => figureID; set => figureID = value; }
         public Color Color { get => color; set => color = value; }
+        public int X { get => x; set => x = value; }
+        public int Y { get => y; set => y = value; }
     }
 }

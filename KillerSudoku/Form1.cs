@@ -36,6 +36,7 @@ namespace KillerSudoku
                     listNumbers[i].Add(randomNumber);
                 }
             }
+            
             return listNumbers;
         }
 
