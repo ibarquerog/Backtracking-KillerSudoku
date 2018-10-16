@@ -22,5 +22,46 @@ namespace KillerSudoku
             this.Cage3 = Cage3;
             this.Cage4 = Cage4;
         }
+
+        public bool isSafe(int gridValue)
+        {
+            if (this.operation == "+")
+            {
+                if (this.Cage1.Value + this.Cage2.Value + this.Cage3.Value + this.Cage4.Value + gridValue > this.figResult)
+                {
+                    return false;
+                }
+
+            }
+            else if(this.operation == "*")
+            {
+                int temporaryResult = 0;
+                if (gridValue%this.figResult != 0)
+                {
+                    return false;
+                }
+                if (this.Cage1.Value != 0)
+                {
+                    temporaryResult *= this.Cage1.Value;
+                }
+                if (this.Cage2.Value != 0)
+                {
+                    temporaryResult *= this.Cage2.Value;
+                }
+                if (this.Cage3.Value != 0)
+                {
+                    temporaryResult *= this.Cage3.Value;
+                }
+                if (this.Cage4.Value != 0)
+                {
+                    temporaryResult *= this.Cage4.Value;
+                }
+                if (temporaryResult * gridValue > this.figResult)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

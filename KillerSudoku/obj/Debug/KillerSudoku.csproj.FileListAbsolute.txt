@@ -25,3 +25,6 @@ C:\Users\paulv\Source\Repos\Backtracking-KillerSudoku2\KillerSudoku\obj\Debug\Ki
 C:\Users\paulv\Source\Repos\Backtracking-KillerSudoku2\KillerSudoku\obj\Debug\KillerSudoku.csproj.CoreCompileInputs.cache
 C:\Users\paulv\Source\Repos\Backtracking-KillerSudoku2\KillerSudoku\obj\Debug\KillerSudoku.exe
 C:\Users\paulv\Source\Repos\Backtracking-KillerSudoku2\KillerSudoku\obj\Debug\KillerSudoku.pdb
+C:\Users\paulv\Source\Repos\Backtracking-KillerSudoku2\KillerSudoku\bin\Debug\KillerSudoku.exe.config
+C:\Users\paulv\Source\Repos\Backtracking-KillerSudoku2\KillerSudoku\bin\Debug\KillerSudoku.exe
+C:\Users\paulv\Source\Repos\Backtracking-KillerSudoku2\KillerSudoku\bin\Debug\KillerSudoku.pdb
