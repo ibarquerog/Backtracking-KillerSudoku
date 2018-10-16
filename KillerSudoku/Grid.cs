@@ -1,5 +1,7 @@
 ﻿using System.Drawing;
 using System;
+using System.Collections.Generic;
+
 namespace KillerSudoku
 {
     class Grid
@@ -334,6 +336,17 @@ namespace KillerSudoku
 
         }
 
-    }
+        private void solveSudoku()
+        {
+            List<List<int>> backtrackingMatrix = new List<List<int>>();
 
+            for (int i = 0; i<this.width; i++)
+            {
+                for (int j = 0; i<this.height; i++)
+                {
+
+                }
+            }
+        }
+    }
 }
