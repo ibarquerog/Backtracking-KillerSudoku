@@ -42,7 +42,7 @@ namespace KillerSudoku
 
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
-            Grid grid = new Grid(15, 15);
+            Grid grid = new Grid(12, 12);
             Label[,] labelGrid = new Label[grid.width, grid.height];
             int x = 3;
             int y = 3;
@@ -52,7 +52,11 @@ namespace KillerSudoku
                 for (int k = 0; k < grid.width; k++)
                 {
                     Label label = new Label();
+                    label.Text = grid.grid[i, k].Value.ToString();
+                    label.Font = new Font("Roboto", 10);
+                    label.ForeColor = System.Drawing.Color.Black;
                     label.BackColor = grid.grid[i, k].Color;
+                    Console.WriteLine(grid.grid[i, k].Color.ToString());
                     label.Location = new Point(x, y);
                     label.BorderStyle = BorderStyle.Fixed3D;
                     label.Size = new Size(30, 30);
