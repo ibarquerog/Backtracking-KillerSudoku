@@ -17,17 +17,22 @@ namespace KillerSudoku
 
         public Figure(Cage Cage1, Cage Cage2, Cage Cage3, Cage Cage4)
         {
-            this.Cage1 = Cage1;
-            this.Cage2 = Cage2;
-            this.Cage3 = Cage3;
-            this.Cage4 = Cage4;
+            this.Cage11 = Cage1;
+            this.Cage21 = Cage2;
+            this.Cage31 = Cage3;
+            this.Cage41 = Cage4;
         }
+
+        internal Cage Cage11 { get => Cage1; set => Cage1 = value; }
+        internal Cage Cage21 { get => Cage2; set => Cage2 = value; }
+        internal Cage Cage31 { get => Cage3; set => Cage3 = value; }
+        internal Cage Cage41 { get => Cage4; set => Cage4 = value; }
 
         public bool isSafe(int gridValue)
         {
             if (this.operation == "+")
             {
-                if (this.Cage1.Value + this.Cage2.Value + this.Cage3.Value + this.Cage4.Value + gridValue > this.figResult)
+                if (this.Cage11.Value + this.Cage21.Value + this.Cage31.Value + this.Cage41.Value + gridValue > this.figResult)
                 {
                     return false;
                 }
@@ -40,21 +45,21 @@ namespace KillerSudoku
                 {
                     return false;
                 }
-                if (this.Cage1.Value != 0)
+                if (this.Cage11.Value != 0)
                 {
-                    temporaryResult *= this.Cage1.Value;
+                    temporaryResult *= this.Cage11.Value;
                 }
-                if (this.Cage2.Value != 0)
+                if (this.Cage21.Value != 0)
                 {
-                    temporaryResult *= this.Cage2.Value;
+                    temporaryResult *= this.Cage21.Value;
                 }
-                if (this.Cage3.Value != 0)
+                if (this.Cage31.Value != 0)
                 {
-                    temporaryResult *= this.Cage3.Value;
+                    temporaryResult *= this.Cage31.Value;
                 }
-                if (this.Cage4.Value != 0)
+                if (this.Cage41.Value != 0)
                 {
-                    temporaryResult *= this.Cage4.Value;
+                    temporaryResult *= this.Cage41.Value;
                 }
                 if (temporaryResult * gridValue > this.figResult)
                 {
