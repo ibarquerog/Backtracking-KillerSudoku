@@ -1,5 +1,7 @@
 ﻿using System.Drawing;
 using System;
+using System.Collections.Generic;
+
 namespace KillerSudoku
 {
 
@@ -676,12 +678,170 @@ namespace KillerSudoku
                 }
 
             }
-
-
-
-            }
-
         }
 
+        public void firstRow()
+        {
+            List<int> list = new List<int>();
+            for (int i = 0; i < this.width; i++)
+            {
+                list.Add(i + 1);
+            }
+
+            for (int i = 0; i < this.width; i++)
+            {
+                if (list.Count == 1)
+                {
+                    this.grid[0, i].Value = list[0];
+                    break;
+                }
+                Random rand = new Random(Guid.NewGuid().GetHashCode());
+                int num = rand.Next(1, list.Count);
+                this.grid[0, i].Value = list[num];
+                list.RemoveAt(num);
+            }
+        }
+
+        private void firstColumn()
+        {
+            List<int> list = new List<int>();
+
+            for (int i = 0; i < this.width; i++)
+            {
+                list.Add(i + 1);
+            }
+
+            for (int i = 0; i < this.width; i++)
+            {
+                if (list.Count == 1)
+                {
+                    this.grid[i, 0].Value = list[0];
+                    break;
+                }
+                Random rand = new Random(Guid.NewGuid().GetHashCode());
+                int num = rand.Next(1, list.Count);
+                this.grid[0, i].Value = list[num];
+                list.RemoveAt(num);
+            }
+        }
+
+        public bool placeNumbers(int n)
+        {
+            int row = -1;
+            int col = -1;
+            bool isEmpty = true;
+            for (int i = 1; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (this.grid[i, j].Value == 0)
+                    {
+                        row = i;
+                        col = j;
+
+                        // we still have some remaining 
+                        // missing values in Sudoku 
+                        isEmpty = false;
+                        break;
+                    }
+                }
+
+                if (!isEmpty)
+                {
+                    break;
+                }
+            }
+
+            // no empty space left 
+            if (isEmpty)
+            {
+                return true;
+            }
+
+            // else for each-row backtrack 
+
+            for (int num = 1; num <= n; num++)
+            {
+                if (isSafe(row, col, num))
+                {
+                    this.grid[row, col].Value = num;
+                    if (placeNumbers(n))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        this.grid[row, col].Value = 0; // replace it 
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool solveSudoku()
+        {
+            int row = -1;
+            int column = -1;
+            bool isEmpty = true;
+            for (int i = 0; i < this.width; i++)
+            {
+                for (int j = 0; j < this.height; j++)
+                {
+                    if (this.grid[i, j].Value == 0)
+                    {
+                        row = i;
+                        column = j;
+                        isEmpty = false;
+                        break;
+                    }
+                }
+                if (!isEmpty)
+                {
+                    break;
+                }
+            }
+
+            if (!isEmpty)
+            {
+                return true;
+            }
+
+            for (int num = 1; num <= this.width; num++)
+            {
+                if (isSafe(row, column, num))
+                {
+                    this.grid[row, column].Value = num;
+                    if (solveSudoku())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        this.grid[row, column].Value = 0;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private bool isSafe(int row, int column, int num)
+        {
+            for (int i = 0; i < this.width; i++)
+            {
+                if (this.grid[row, i].Value == num)
+                {
+                    return false;
+                }
+            }
+            for (int j = 0; j < this.width; j++)
+            {
+                if (this.grid[j, column].Value == num)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
