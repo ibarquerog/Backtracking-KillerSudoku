@@ -1,5 +1,7 @@
 ﻿using System.Drawing;
 using System;
+using System.Collections.Generic;
+
 namespace KillerSudoku
 {
 
@@ -609,6 +611,70 @@ namespace KillerSudoku
             }
 
         }
+        private bool solveSudoku()
+        {
+            int row = -1;
+            int column = -1;
+            bool isEmpty = true;
+            for (int i = 0; i<this.width; i++)
+            {
+                for (int j = 0; j<this.height; j++)
+                {
+                    if (this.grid[i,j].Value==0)
+                    {
+                        row = i;
+                        column = j;
+                        isEmpty = false;
+                        break;
+                    }
+                }
+                if (!isEmpty)
+                {
+                    break;
+                }
+            }
 
+            if (!isEmpty)
+            {
+                return true;
+            }
+
+            for (int num = 1; num<=this.width; num++)
+            {
+                if (isSafe(row, column, num))
+                {
+                    this.grid[row, column].Value = num;
+                    if (solveSudoku())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        this.grid[row, column].Value = 0;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private bool isSafe(int row, int column, int num)
+        {
+            for (int i = 0; i<this.width; i++)
+            {
+                if (this.grid[row,i].Value == num)
+                {
+                    return false;
+                }
+            }
+            for (int j = 0; j < this.width; j++)
+            {
+                if (this.grid[row, j].Value == num)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
