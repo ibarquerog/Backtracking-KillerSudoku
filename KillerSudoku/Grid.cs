@@ -13,6 +13,10 @@ namespace KillerSudoku
         public Cage[,] grid;
         List<Figure> figures = new List<Figure>();
 
+        public void delete()
+        {
+            this.grid = null;
+        }
 
         public Grid(int width, int height)
         {
@@ -23,7 +27,7 @@ namespace KillerSudoku
             generatePuzzle();
             fillEntirePuzzle();
             firstRow();
-            firstColumn();
+           // firstColumn();
             placeNumbers(this.width);
         }
 
@@ -708,7 +712,7 @@ namespace KillerSudoku
 
             for (int i = 0; i < this.width; i++)
             {
-                list.Add(i + 1);
+                list.Add(i+1);
             }
 
             for (int i = 0; i < this.width; i++)
@@ -720,7 +724,7 @@ namespace KillerSudoku
                 }
                 Random rand = new Random(Guid.NewGuid().GetHashCode());
                 int num = rand.Next(1, list.Count);
-                this.grid[0, i].Value = list[num];
+                this.grid[i, 0].Value = list[num];
                 list.RemoveAt(num);
             }
         }

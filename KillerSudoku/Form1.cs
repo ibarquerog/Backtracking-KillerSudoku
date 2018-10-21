@@ -42,7 +42,8 @@ namespace KillerSudoku
 
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
-            Grid grid = new Grid(12, 12);
+            clear();
+            Grid grid = new Grid(15, 15);
             Label[,] labelGrid = new Label[grid.width, grid.height];
             int x = 3;
             int y = 3;
@@ -75,12 +76,22 @@ namespace KillerSudoku
                 {
                     Label label = labelGrid[i, k];
                     this.Controls.Add(label);
+                   
                 }
             }
 
+
         }
 
-
-
+        private void clear()
+          {
+            foreach (Control control in this.Controls)
+            {
+                if(control is Label)
+                {
+                    this.Controls.Remove(control);
+                }
+            }
+        }
     }
 }
