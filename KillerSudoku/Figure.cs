@@ -12,6 +12,7 @@ namespace KillerSudoku
         private Cage Cage2;
         private Cage Cage3;
         private Cage Cage4;
+        List<Cage> cageList = new List<Cage>();
 
         public Figure(Cage Cage1, Cage Cage2, Cage Cage3, Cage Cage4)
         {
@@ -19,6 +20,10 @@ namespace KillerSudoku
             this.Cage21 = Cage2;
             this.Cage31 = Cage3;
             this.Cage41 = Cage4;
+            this.cageList.Add(this.Cage1);
+            this.cageList.Add(this.Cage2);
+            this.cageList.Add(this.Cage3);
+            this.cageList.Add(this.Cage4);
         }
 
         internal Cage Cage11 { get => Cage1; set => Cage1 = value; }
@@ -45,7 +50,7 @@ namespace KillerSudoku
         }
 
 
-        public bool isSafe(int gridValue)
+        public override bool isSafe(int gridValue)
         {
             if (this.Operation == "+")
             {

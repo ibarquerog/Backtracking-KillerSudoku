@@ -923,17 +923,17 @@ namespace KillerSudoku
 
         private bool solveSudoku()
         {
-            int row = -1;
-            int column = -1;
+            MainFigure figure = new MainFigure();
+            Cage cage = new Cage();
             bool isEmpty = true;
-            for (int i = 0; i < this.width; i++)
+            for (int i = 0; i < this.orderedFigures.Count; i++)
             {
-                for (int j = 0; j < this.height; j++)
+                for (int j = 0; j < this.orderedFigures[i].CageList.Count; j++)
                 {
-                    if (this.grid[i, j].Value == 0)
+                    if (this.orderedFigures[i].CageList[j].Value == 0)
                     {
-                        row = i;
-                        column = j;
+                        cage = this.orderedFigures[i].CageList[j];
+                        figure = this.orderedFigures[i];
                         isEmpty = false;
                         break;
                     }
@@ -944,29 +944,76 @@ namespace KillerSudoku
                 }
             }
 
-            if (!isEmpty)
+            if (isEmpty)
             {
                 return true;
             }
 
             for (int num = 1; num <= this.width; num++)
             {
-                if (isSafe(row, column, num))
+                if (isSafe(cage.X, cage.Y, num) == true && figure.isSafe(num) == true)
                 {
-                    this.grid[row, column].Value = num;
+                    this.grid[cage.X, cage.Y].Value = num;
                     if (solveSudoku())
                     {
                         return true;
                     }
                     else
                     {
-                        this.grid[row, column].Value = 0;
+                        this.grid[cage.X, cage.Y].Value = 0;
                     }
                 }
             }
 
             return false;
         }
+
+        //private bool solveSudoku()
+        //{
+        //    int row = -1;
+        //    int column = -1;
+        //    bool isEmpty = true;
+        //    for (int i = 0; i < this.width; i++)
+        //    {
+        //        for (int j = 0; j < this.height; j++)
+        //        {
+        //            if (this.grid[i, j].Value == 0)
+        //            {
+        //                row = i;
+        //                column = j;
+        //                isEmpty = false;
+        //                break;
+        //            }
+        //        }
+        //        if (!isEmpty)
+        //        {
+        //            break;
+        //        }
+        //    }
+
+        //    if (isEmpty)
+        //    {
+        //        return true;
+        //    }
+
+        //    for (int num = 1; num <= this.width; num++)
+        //    {
+        //        if (isSafe(row, column, num))
+        //        {
+        //            this.grid[row, column].Value = num;
+        //            if (solveSudoku())
+        //            {
+        //                return true;
+        //            }
+        //            else
+        //            {
+        //                this.grid[row, column].Value = 0;
+        //            }
+        //        }
+        //    }
+
+        //    return false;
+        //}
 
         private bool isSafe(int row, int column, int num)
         {
