@@ -42,18 +42,18 @@ namespace KillerSudoku
 
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
-            clear();
+            //clear();
             Grid grid = new Grid(15, 15);
             Label[,] labelGrid = new Label[grid.width, grid.height];
-            int x = 3;
-            int y = 3;
+            int x = 5;
+            int y = 5;
 
             for (int i = 0; i < grid.height; i++)
             {
                 for (int k = 0; k < grid.width; k++)
                 {
                     Label label = new Label();
-                    label.Text = grid.grid[i, k].Value.ToString();
+                   // label.Text = grid.grid[i, k].Value.ToString();
                     label.Font = new Font("Roboto", 10);
                     label.TextAlign = ContentAlignment.BottomRight;
                     label.ForeColor = System.Drawing.Color.Black;
@@ -67,7 +67,7 @@ namespace KillerSudoku
 
                 }
                 y += 50;
-                x = 3;
+                x = 5;
             }
 
             
@@ -85,26 +85,34 @@ namespace KillerSudoku
                     miniLabel.Size=new Size(47,20);
                     miniLabel.Font = new Font("Roboto", 7);
                     miniLabel.Location = new Point(label.Location.X + 2, label.Location.Y + 2);
-                    this.Controls.Add(miniLabel);
-                    this.Controls.Add(label);
+                    panel1.Controls.Add(miniLabel);
+                    panel1.Controls.Add(label);
                     
                    
                 }
             }
+
+            FileManager file = new FileManager();
+            file.saveFile(grid, "C: \\Users\\Ignacio\\Desktop\\prueba.xml");
             
-
-
         }
 
         private void clear()
-          {
-            foreach (Control control in this.Controls)
-            {
-                if(control is Label)
-                {
-                    this.Controls.Remove(control);
-                }
-            }
+        {
+            panel1.Controls.Clear();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.saveFileDialog1.ShowDialog();
+            string file = saveFileDialog1.FileName+".xml";
+            Console.WriteLine(file);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.openFileDialog1.ShowDialog();
+            string file = openFileDialog1.FileName;
         }
     }
 }
