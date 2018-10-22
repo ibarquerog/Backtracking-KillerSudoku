@@ -11,7 +11,7 @@ namespace KillerSudoku
         public int width;
         public int height;
         public Cage[,] grid;
-        List<Figure> figures = new List<Figure>();
+        public List<MainFigure> figures = new List<MainFigure>();
 
         public void delete()
         {
@@ -24,11 +24,13 @@ namespace KillerSudoku
             this.height = height;
             grid = new Cage[this.width, this.height];
             initializeGrid();
+            firstRow();
+            firstColumn();
+            placeNumbers(this.width);
             generatePuzzle();
             fillEntirePuzzle();
-            firstRow();
-           // firstColumn();
-            placeNumbers(this.width);
+            generateResults();
+            
         }
 
         
@@ -38,9 +40,7 @@ namespace KillerSudoku
             for (int i = 0; i < this.height; i++)
             {
                 for (int k = 0; k < this.width; k++)
-                {
-                    
-
+                {                  
                         drawL(i, k, contId);
                         drawTRight(i, k, contId);
                         drawTUp(i, k, contId);
@@ -55,6 +55,11 @@ namespace KillerSudoku
                         drawZ(i, k, contId);
                         drawTLeft(i, k, contId);
                         drawlVertical(i, k, contId);
+                        draw3blocksHorizontal(i, k, contId);
+                        draw3blocksVertical(i, k, contId);
+                        draw2blocksHorizontal(i, k, contId);
+                        draw2blocksVertical(i, k, contId);
+                        drawSingleCage(i, k, contId);
                     
                 }
             }
@@ -132,6 +137,134 @@ namespace KillerSudoku
 
             }
         }
+
+        private void drawSingleCage(int i, int k, int figureID)
+        {
+            if (this.grid[i, k].Figure == "")
+            {
+                this.contId += 1;
+                this.grid[i, k].Color = Color.White;
+                this.grid[i, k].FigureID = figureID;
+                this.grid[i, k].X = i;
+                this.grid[i, k].Y = k;
+                this.grid[i, k].Figure = "One";
+                Figure1 figure = new Figure1(this.grid[i, k]);
+                figure.FigResult = this.grid[i, k].Value;
+                this.figures.Add(figure);
+            }
+           
+        }
+        private void draw2blocksVertical(int i, int k, int figureID)
+        {
+            if (i + 1 < this.height)
+            {
+                if (this.grid[i, k].Figure == "" && this.grid[i + 1, k].Figure == "")
+                {
+                    this.contId += 1;
+                    this.grid[i, k].Color = Color.FromArgb(244, 66, 92);
+                    this.grid[i, k].FigureID = figureID;
+                    this.grid[i, k].X = i;
+                    this.grid[i, k].Y = k;
+                    this.grid[i, k].Figure = "twoV";
+
+                    this.grid[i + 1, k].Color = Color.FromArgb(244, 66, 92);
+                    this.grid[i + 1, k].FigureID = figureID;
+                    this.grid[i + 1, k].X = i + 1;
+                    this.grid[i + 1, k].Y = k;
+                    this.grid[i + 1, k].Figure = "twoV";
+
+                    Figure2 figure = new Figure2(this.grid[i, k], this.grid[i + 1, k]);
+                    this.figures.Add(figure);
+                }
+            }
+        }
+        private void draw2blocksHorizontal(int i, int k, int figureID)
+        {
+            if (k + 1 < this.width)
+            {
+                if (this.grid[i, k].Figure == "" && this.grid[i, k + 1].Figure == "")
+                {
+                    this.contId += 1;
+                    this.grid[i, k].Color = Color.FromArgb(244, 202, 65);
+                    this.grid[i, k].FigureID = figureID;
+                    this.grid[i, k].X = i;
+                    this.grid[i, k].Y = k;
+                    this.grid[i, k].Figure = "twoH";
+
+                    this.grid[i, k + 1].Color = Color.FromArgb(244, 202, 65);
+                    this.grid[i, k + 1].FigureID = figureID;
+                    this.grid[i, k + 1].X = i;
+                    this.grid[i, k + 1].Y = k + 1;
+                    this.grid[i, k + 1].Figure = "twoH";
+
+                    Figure2 figure = new Figure2(this.grid[i, k], this.grid[i, k + 1]);
+                    this.figures.Add(figure);
+                }
+            }
+        }
+
+        private void draw3blocksHorizontal(int i, int k, int figureID)
+        {
+            if (k + 2 < this.width)
+            {
+                if (this.grid[i, k].Figure == "" && this.grid[i, k + 1].Figure == "" && this.grid[i, k + 2].Figure == "")
+                {
+                    this.contId += 1;
+                    this.grid[i, k].Color = Color.FromArgb(114, 130, 81);
+                    this.grid[i, k].FigureID = figureID;
+                    this.grid[i, k].X = i;
+                    this.grid[i, k].Y = k;
+                    this.grid[i, k].Figure = "treeH";
+
+                    this.grid[i, k + 1].Color = Color.FromArgb(114, 130, 81);
+                    this.grid[i, k + 1].FigureID = figureID;
+                    this.grid[i, k + 1].X = i;
+                    this.grid[i, k + 1].Y = k + 1;
+                    this.grid[i, k + 1].Figure = "treeH";
+
+                    this.grid[i, k + 2].Color = Color.FromArgb(114, 130, 81);
+                    this.grid[i, k + 2].FigureID = figureID;
+                    this.grid[i, k + 2].X = i;
+                    this.grid[i, k + 2].Y = k + 2;
+                    this.grid[i, k + 2].Figure = "treeH";
+
+                    Figure3 figure = new Figure3(this.grid[i, k], this.grid[i, k + 1], this.grid[i, k + 2]);
+                    this.figures.Add(figure);
+                }
+            }
+        }
+
+        private void draw3blocksVertical(int i, int k, int figureID)
+        {
+            if (i + 2 < this.height)
+            {
+                if (this.grid[i, k].Figure == "" && this.grid[i + 1, k].Figure == "" && this.grid[i + 2, k].Figure == "")
+                {
+                    this.contId += 1;
+                    this.grid[i, k].Color = Color.FromArgb(167, 201, 232);
+                    this.grid[i, k].FigureID = figureID;
+                    this.grid[i, k].X = i;
+                    this.grid[i, k].Y = k;
+                    this.grid[i, k].Figure = "treeV";
+
+                    this.grid[i + 1, k].Color = Color.FromArgb(167, 201, 232);
+                    this.grid[i + 1, k].FigureID = figureID;
+                    this.grid[i + 1, k].X = i + 1;
+                    this.grid[i + 1, k].Y = k;
+                    this.grid[i + 1, k].Figure = "treeV";
+
+                    this.grid[i + 2, k].Color = Color.FromArgb(167, 201, 232);
+                    this.grid[i + 2, k].FigureID = figureID;
+                    this.grid[i + 2, k].X = i + 2;
+                    this.grid[i + 2, k].Y = k;
+                    this.grid[i + 2, k].Figure = "treeV";
+
+                    Figure3 figure = new Figure3(this.grid[i, k], this.grid[i + 1, k], this.grid[i + 2, k]);
+                    this.figures.Add(figure);
+                }
+            }
+        }
+
 
         private void drawlVertical(int i, int k, int figureID)
         {
@@ -719,12 +852,12 @@ namespace KillerSudoku
             {
                 if (list.Count == 1)
                 {
-                    this.grid[i, 0].Value = list[0];
+                    this.grid[1, 0].Value = list[0];
                     break;
                 }
                 Random rand = new Random(Guid.NewGuid().GetHashCode());
                 int num = rand.Next(1, list.Count);
-                this.grid[i, 0].Value = list[num];
+                this.grid[1, 0].Value = list[num];
                 list.RemoveAt(num);
             }
         }
@@ -847,5 +980,14 @@ namespace KillerSudoku
             }
             return true;
         }
+
+        private void generateResults()
+        {
+            for(int i = 0; i < this.figures.Count; i++)
+            {
+                this.figures[i].generateResult();
+            }
+        }
+
     }
 }

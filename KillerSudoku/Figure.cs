@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace KillerSudoku
 {
-    class Figure
-    {
-        private int figResult;
-        private string operation;
+    class Figure:MainFigure
+    { 
         private Cage Cage1;
         private Cage Cage2;
         private Cage Cage3;
@@ -28,20 +26,39 @@ namespace KillerSudoku
         internal Cage Cage31 { get => Cage3; set => Cage3 = value; }
         internal Cage Cage41 { get => Cage4; set => Cage4 = value; }
 
+
+        public override void generateResult()
+        {
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
+            int num = rand.Next(0, 2);
+            if (num == 0)
+            {
+                this.FigResult = Cage1.Value + Cage2.Value + Cage3.Value + Cage4.Value;
+                this.Operation = "+";
+            }
+            else
+            {
+                this.FigResult = Cage1.Value * Cage2.Value * Cage3.Value * Cage4.Value;
+                this.Operation = "x";
+            }
+
+        }
+
+
         public bool isSafe(int gridValue)
         {
-            if (this.operation == "+")
+            if (this.Operation == "+")
             {
-                if (this.Cage11.Value + this.Cage21.Value + this.Cage31.Value + this.Cage41.Value + gridValue > this.figResult)
+                if (this.Cage11.Value + this.Cage21.Value + this.Cage31.Value + this.Cage41.Value + gridValue > this.FigResult)
                 {
                     return false;
                 }
 
             }
-            else if(this.operation == "*")
+            else if(this.Operation == "*")
             {
                 int temporaryResult = 0;
-                if (gridValue%this.figResult != 0)
+                if (gridValue%this.FigResult != 0)
                 {
                     return false;
                 }
@@ -61,7 +78,7 @@ namespace KillerSudoku
                 {
                     temporaryResult *= this.Cage41.Value;
                 }
-                if (temporaryResult * gridValue > this.figResult)
+                if (temporaryResult * gridValue > this.FigResult)
                 {
                     return false;
                 }

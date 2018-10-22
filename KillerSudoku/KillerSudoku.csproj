@@ -46,6 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cage.cs" />
+    <Compile Include="Figure1.cs" />
+    <Compile Include="Figure2.cs" />
+    <Compile Include="Figure3.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +57,7 @@
     </Compile>
     <Compile Include="Grid.cs" />
     <Compile Include="Figure.cs" />
+    <Compile Include="MainFigure.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

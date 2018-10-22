@@ -55,30 +55,43 @@ namespace KillerSudoku
                     Label label = new Label();
                     label.Text = grid.grid[i, k].Value.ToString();
                     label.Font = new Font("Roboto", 10);
+                    label.TextAlign = ContentAlignment.BottomRight;
                     label.ForeColor = System.Drawing.Color.Black;
                     label.BackColor = grid.grid[i, k].Color;
                     Console.WriteLine(grid.grid[i, k].Color.ToString());
                     label.Location = new Point(x, y);
                     label.BorderStyle = BorderStyle.Fixed3D;
-                    label.Size = new Size(30, 30);
-                    x += 30;
+                    label.Size = new Size(50, 50);
+                    x += 50;
                     labelGrid[i, k] = label;
 
                 }
-                y += 30;
+                y += 50;
                 x = 3;
             }
 
+            
 
             for (int i = 0; i < labelGrid.GetLength(0); i++)
             {
                 for (int k = 0; k < labelGrid.GetLength(1); k++)
                 {
                     Label label = labelGrid[i, k];
+                    int id = grid.grid[i, k].FigureID;
+                    string labelText = grid.figures[id].FigResult + grid.figures[id].Operation;
+                    Label miniLabel = new Label();
+                    miniLabel.Text = labelText;
+                    miniLabel.BackColor = label.BackColor;
+                    miniLabel.Size=new Size(47,20);
+                    miniLabel.Font = new Font("Roboto", 7);
+                    miniLabel.Location = new Point(label.Location.X + 2, label.Location.Y + 2);
+                    this.Controls.Add(miniLabel);
                     this.Controls.Add(label);
+                    
                    
                 }
             }
+            
 
 
         }
