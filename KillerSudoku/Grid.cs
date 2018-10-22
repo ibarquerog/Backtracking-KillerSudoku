@@ -12,6 +12,7 @@ namespace KillerSudoku
         public int height;
         public Cage[,] grid;
         public List<MainFigure> figures = new List<MainFigure>();
+        public List<MainFigure> orderedFigures = new List<MainFigure>();
 
         public void delete()
         {
@@ -30,7 +31,12 @@ namespace KillerSudoku
             generatePuzzle();
             fillEntirePuzzle();
             generateResults();
-            
+            orderFigures();
+            //Console.WriteLine("Estoy lactando heavy.");
+            foreach (MainFigure i in this.orderedFigures)
+            {
+                Console.WriteLine(i.GetType());
+            }
         }
 
         
@@ -989,5 +995,36 @@ namespace KillerSudoku
             }
         }
 
+        private void orderFigures()
+        {
+            foreach (MainFigure i in this.figures)
+            {
+                if (i.GetType() == typeof(Figure1))
+                {
+                    this.orderedFigures.Add(i);
+                }
+            }
+            foreach (MainFigure i in this.figures)
+            {
+                if (i.GetType() == typeof(Figure2))
+                {
+                    this.orderedFigures.Add(i);
+                }
+            }
+            foreach (MainFigure i in this.figures)
+            {
+                if (i.GetType() == typeof(Figure3))
+                {
+                    this.orderedFigures.Add(i);
+                }
+            }
+            foreach (MainFigure i in this.figures)
+            {
+                if (i.GetType() == typeof(Figure))
+                {
+                    this.orderedFigures.Add(i);
+                }
+            }
+        }
     }
 }

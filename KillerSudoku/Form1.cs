@@ -58,7 +58,7 @@ namespace KillerSudoku
                     label.TextAlign = ContentAlignment.BottomRight;
                     label.ForeColor = System.Drawing.Color.Black;
                     label.BackColor = grid.grid[i, k].Color;
-                    Console.WriteLine(grid.grid[i, k].Color.ToString());
+                    //Console.WriteLine(grid.grid[i, k].Color.ToString());
                     label.Location = new Point(x, y);
                     label.BorderStyle = BorderStyle.Fixed3D;
                     label.Size = new Size(50, 50);
