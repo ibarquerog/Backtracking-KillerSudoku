@@ -32,7 +32,7 @@ namespace KillerSudoku
             fillEntirePuzzle();
             generateResults();
             orderFigures();
-            //Console.WriteLine("Estoy lactando heavy.");
+           
             foreach (MainFigure i in this.orderedFigures)
             {
                 Console.WriteLine(i.GetType());
@@ -89,6 +89,7 @@ namespace KillerSudoku
             {
                 for (int k = 0; k < this.width; k++)
                 {
+                    Console.WriteLine(this.contId.ToString());
                     Random rand = new Random(Guid.NewGuid().GetHashCode());
                     int randNum = rand.Next(1, 14);
 
