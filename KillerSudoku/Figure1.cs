@@ -9,7 +9,7 @@ namespace KillerSudoku
     class Figure1:MainFigure
     {
         Cage cage;
-        List<Cage> cageList = new List<Cage>();
+       
         
         public Figure1(Cage cage1)
         {

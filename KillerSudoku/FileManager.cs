@@ -17,27 +17,21 @@ namespace KillerSudoku
 
         public void saveFile(Grid sudoku,string path)
         {
-            XmlWriterSettings settings = new XmlWriterSettings { Indent = true };
-            using (XmlWriter writer = XmlWriter.Create(path,settings))
+            string text = "";
+            for (int i = 0; i < sudoku.figures.Count; i++)
             {
-                writer.WriteStartDocument();
-                writer.WriteStartElement("Cages");
-
-                foreach (Cage cage in sudoku.grid)
+                foreach(Cage cage in sudoku.figures[i].cageList)
                 {
-                    writer.WriteStartElement("Cage");
-
-                    writer.WriteElementString("X", cage.X.ToString());
-                    writer.WriteElementString("Y", cage.Y.ToString());
-                    writer.WriteElementString("FigureID", cage.FigureID.ToString());
-                    writer.WriteElementString("Figure", cage.Figure.ToString());
-
-                    writer.WriteEndElement();
+                    text += cage.Figure + "," ;
+                    text += cage.FigureID+",";
+                    text += cage.X.ToString()+",";
+                    text += cage.Y.ToString() + ",";
+                    text += cage.FigureID.ToString() + ",";
+                    text += cage.Color.ToString() + "\r\n";
                 }
-
-                writer.WriteEndElement();
-                writer.WriteEndDocument();
             }
+            
+            System.IO.File.WriteAllText(path, text);
 
         }
 
