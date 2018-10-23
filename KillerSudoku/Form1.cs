@@ -44,7 +44,8 @@ namespace KillerSudoku
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
             clear();
-            grid = new Grid(11, 11);
+            grid = new Grid(8, 8);
+            grid.solveSudoku();
             dibujar();
 
         }
@@ -124,6 +125,7 @@ namespace KillerSudoku
 
             FileManager fileToOpen = new FileManager();
             grid = fileToOpen.openFile(file);
+            grid.solveSudoku();
             dibujar();
             
         }

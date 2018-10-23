@@ -33,7 +33,6 @@ namespace KillerSudoku
             generateResults();
             orderFigures();
             resetResults();
-            solveSudoku();
            
         }
 
@@ -920,7 +919,7 @@ namespace KillerSudoku
             return false;
         }
 
-        private bool solveSudoku()
+        public bool solveSudoku()
         {
             MainFigure figure = new MainFigure();
             Cage cage = new Cage();
@@ -1005,7 +1004,7 @@ namespace KillerSudoku
             }
         }
 
-        private void orderFigures()
+        public void orderFigures()
         {
             foreach (MainFigure i in this.figures)
             {

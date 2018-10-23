@@ -66,6 +66,7 @@ namespace KillerSudoku
                         cage1.X = int.Parse(x);
                         cage1.Y = int.Parse(y);
                         cage1.FigureID = int.Parse(id);
+                        cage1.Figure = figure;
 
                         figure = file.ReadLine(); ; id = file.ReadLine(); x = file.ReadLine();  y = file.ReadLine();
                         file.ReadLine();
@@ -74,6 +75,7 @@ namespace KillerSudoku
                         cage2.Y = int.Parse(y);
                         cage2.Color = color;
                         cage2.FigureID = int.Parse(id);
+                        cage2.Figure = figure;
 
                         figure = file.ReadLine(); ; id = file.ReadLine(); x = file.ReadLine(); y = file.ReadLine();
                         file.ReadLine();
@@ -82,6 +84,7 @@ namespace KillerSudoku
                         cage3.Y = int.Parse(y);
                         cage3.Color = color;
                         cage3.FigureID = int.Parse(id);
+                        cage3.Figure = figure;
 
                         figure = file.ReadLine(); ; id = file.ReadLine(); x = file.ReadLine(); y = file.ReadLine();
                         file.ReadLine();
@@ -90,6 +93,7 @@ namespace KillerSudoku
                         cage4.Y = int.Parse(y);
                         cage4.Color = color;
                         cage4.FigureID = int.Parse(id);
+                        cage4.Figure = figure;
                         Figure fig = new Figure(cage1, cage2, cage3, cage4);
                         fig.FigResult = int.Parse(file.ReadLine());
                         fig.Operation = file.ReadLine();
@@ -110,6 +114,7 @@ namespace KillerSudoku
                             cage1.Y = int.Parse(y);
                             cage1.Color = color;
                             cage1.FigureID = int.Parse(id);
+                            cage1.Figure = figure;
 
                             figure = file.ReadLine(); ; id = file.ReadLine(); x = file.ReadLine(); y = file.ReadLine();
                             file.ReadLine();
@@ -118,6 +123,7 @@ namespace KillerSudoku
                             cage2.Y = int.Parse(y);
                             cage2.Color = color;
                             cage2.FigureID = int.Parse(id);
+                            cage2.Figure = figure;
 
                             Figure2 fig = new Figure2(cage1, cage2);
                             fig.FigResult = int.Parse(file.ReadLine());
@@ -139,6 +145,7 @@ namespace KillerSudoku
                                 cage1.Y = int.Parse(y);
                                 cage1.Color = color;
                                 cage1.FigureID = int.Parse(id);
+                                cage1.Figure = figure;
 
                                 figure = file.ReadLine(); ; id = file.ReadLine(); x = file.ReadLine(); y = file.ReadLine();
                                 file.ReadLine();
@@ -147,6 +154,7 @@ namespace KillerSudoku
                                 cage2.Y = int.Parse(y);
                                 cage2.Color = color;
                                 cage2.FigureID = int.Parse(id);
+                                cage2.Figure = figure;
 
                                 figure = file.ReadLine(); ; id = file.ReadLine(); x = file.ReadLine(); y = file.ReadLine();
                                 file.ReadLine();
@@ -155,6 +163,7 @@ namespace KillerSudoku
                                 cage3.Y = int.Parse(y);
                                 cage3.Color = color;
                                 cage3.FigureID = int.Parse(id);
+                                cage3.Figure = figure;
 
                                 Figure3 fig = new Figure3(cage1, cage2, cage3);
                                 fig.FigResult = int.Parse(file.ReadLine());
@@ -169,6 +178,7 @@ namespace KillerSudoku
                                 string y = file.ReadLine();
                                 Color color = ColorTranslator.FromHtml(file.ReadLine());
                                 Cage cage1 = new Cage();
+                                cage1.Figure = figure;
                                 cage1.X = int.Parse(x);
                                 cage1.Y = int.Parse(y);
                                 cage1.Color = color;
@@ -197,6 +207,8 @@ namespace KillerSudoku
                 }
             }
             grid.figures = list;
+            grid.orderedFigures.Clear();
+            grid.orderFigures(); 
             return grid;
         }
 
