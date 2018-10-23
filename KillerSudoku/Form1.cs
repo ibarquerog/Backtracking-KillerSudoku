@@ -13,6 +13,7 @@ namespace KillerSudoku
 {
     public partial class Form1 : Form
     {
+        Grid grid;
         public Form1()
         {
             InitializeComponent();
@@ -42,8 +43,14 @@ namespace KillerSudoku
 
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
-            //clear();
-            Grid grid = new Grid(5, 5);
+            clear();
+            grid = new Grid(5, 5);
+            dibujar();
+
+        }
+
+        private void dibujar()
+        {
             Label[,] labelGrid = new Label[grid.width, grid.height];
             int x = 5;
             int y = 5;
@@ -53,7 +60,7 @@ namespace KillerSudoku
                 for (int k = 0; k < grid.width; k++)
                 {
                     Label label = new Label();
-                    label.Text = grid.grid[i, k].Value.ToString();
+                    //label.Text = grid.grid[i, k].Value.ToString();
                     label.Font = new Font("Roboto", 10);
                     label.TextAlign = ContentAlignment.BottomRight;
                     label.ForeColor = System.Drawing.Color.Black;
@@ -70,7 +77,7 @@ namespace KillerSudoku
                 x = 5;
             }
 
-            
+
 
             for (int i = 0; i < labelGrid.GetLength(0); i++)
             {
@@ -82,22 +89,18 @@ namespace KillerSudoku
                     Label miniLabel = new Label();
                     miniLabel.Text = labelText;
                     miniLabel.BackColor = label.BackColor;
-                    miniLabel.Size=new Size(47,20);
+                    miniLabel.Size = new Size(47, 20);
                     ToolTip tip = new ToolTip();
                     tip.ToolTipTitle = miniLabel.Text;
-                    tip.SetToolTip(miniLabel,miniLabel.Text);
+                    tip.SetToolTip(miniLabel, miniLabel.Text);
                     miniLabel.Font = new Font("Roboto", 7);
                     miniLabel.Location = new Point(label.Location.X + 2, label.Location.Y + 2);
                     panel1.Controls.Add(miniLabel);
                     panel1.Controls.Add(label);
-                    
-                   
+
+
                 }
             }
-
-            FileManager file = new FileManager();
-            //file.openFile( "C: \\Users\\Ignacio\\Desktop\\prueba.xml");
-            file.saveFile(grid,"C: \\Users\\Ignacio\\Desktop\\prueba.txt");
         }
 
         private void clear()
@@ -108,14 +111,21 @@ namespace KillerSudoku
         private void button1_Click(object sender, EventArgs e)
         {
             this.saveFileDialog1.ShowDialog();
-            string file = saveFileDialog1.FileName+".xml";
-            Console.WriteLine(file);
+            string file = saveFileDialog1.FileName+".txt";
+            FileManager fileToSave = new FileManager();
+            fileToSave.saveFile(grid, file);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.openFileDialog1.ShowDialog();
+            clear();
+           this.openFileDialog1.ShowDialog();
             string file = openFileDialog1.FileName;
+
+            FileManager fileToOpen = new FileManager();
+            grid = fileToOpen.openFile(file);
+            dibujar();
+            
         }
     }
 }
