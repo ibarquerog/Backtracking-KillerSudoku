@@ -11,7 +11,6 @@ namespace KillerSudoku
 
         private Cage Cage1;
         private Cage Cage2;
-        List<Cage> cageList = new List<Cage>();
 
         public Figure2(Cage Cage1, Cage Cage2)
         {

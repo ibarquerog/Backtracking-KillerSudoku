@@ -43,7 +43,7 @@ namespace KillerSudoku
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
             //clear();
-            Grid grid = new Grid(15, 15);
+            Grid grid = new Grid(5, 5);
             Label[,] labelGrid = new Label[grid.width, grid.height];
             int x = 5;
             int y = 5;
@@ -53,7 +53,7 @@ namespace KillerSudoku
                 for (int k = 0; k < grid.width; k++)
                 {
                     Label label = new Label();
-                   // label.Text = grid.grid[i, k].Value.ToString();
+                    label.Text = grid.grid[i, k].Value.ToString();
                     label.Font = new Font("Roboto", 10);
                     label.TextAlign = ContentAlignment.BottomRight;
                     label.ForeColor = System.Drawing.Color.Black;
@@ -83,6 +83,9 @@ namespace KillerSudoku
                     miniLabel.Text = labelText;
                     miniLabel.BackColor = label.BackColor;
                     miniLabel.Size=new Size(47,20);
+                    ToolTip tip = new ToolTip();
+                    tip.ToolTipTitle = miniLabel.Text;
+                    tip.SetToolTip(miniLabel,miniLabel.Text);
                     miniLabel.Font = new Font("Roboto", 7);
                     miniLabel.Location = new Point(label.Location.X + 2, label.Location.Y + 2);
                     panel1.Controls.Add(miniLabel);
@@ -93,8 +96,8 @@ namespace KillerSudoku
             }
 
             FileManager file = new FileManager();
-            file.saveFile(grid, "C: \\Users\\Ignacio\\Desktop\\prueba.xml");
-            
+            //file.openFile( "C: \\Users\\Ignacio\\Desktop\\prueba.xml");
+            file.saveFile(grid,"C: \\Users\\Ignacio\\Desktop\\prueba.txt");
         }
 
         private void clear()

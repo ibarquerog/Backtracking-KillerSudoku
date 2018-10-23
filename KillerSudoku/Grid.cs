@@ -32,11 +32,9 @@ namespace KillerSudoku
             fillEntirePuzzle();
             generateResults();
             orderFigures();
+            resetResults();
+            solveSudoku();
            
-            foreach (MainFigure i in this.orderedFigures)
-            {
-                Console.WriteLine(i.GetType());
-            }
         }
 
         
@@ -929,11 +927,11 @@ namespace KillerSudoku
             bool isEmpty = true;
             for (int i = 0; i < this.orderedFigures.Count; i++)
             {
-                for (int j = 0; j < this.orderedFigures[i].CageList.Count; j++)
+                for (int j = 0; j < this.orderedFigures[i].cageList.Count; j++)
                 {
-                    if (this.orderedFigures[i].CageList[j].Value == 0)
+                    if (this.orderedFigures[i].cageList[j].Value == 0)
                     {
-                        cage = this.orderedFigures[i].CageList[j];
+                        cage = this.orderedFigures[i].cageList[j];
                         figure = this.orderedFigures[i];
                         isEmpty = false;
                         break;
@@ -967,6 +965,16 @@ namespace KillerSudoku
             }
 
             return false;
+        }
+        public void resetResults()
+        {
+            for (int i = 0; i < this.width; i++)
+            {
+                for (int j = 0; j < this.width; j++)
+                {
+                    this.grid[i, j].Value = 0;
+                }
+            }
         }
 
         //private bool solveSudoku()
