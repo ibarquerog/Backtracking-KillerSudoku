@@ -59,10 +59,10 @@ namespace KillerSudoku
                 }
 
             }
-            else if(this.Operation == "*")
+            else if(this.Operation == "x")
             {
-                int temporaryResult = 0;
-                if (gridValue%this.FigResult != 0)
+                int temporaryResult = 1;
+                if (this.FigResult%gridValue != 0)
                 {
                     return false;
                 }

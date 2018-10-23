@@ -43,7 +43,7 @@ namespace KillerSudoku
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
             //clear();
-            Grid grid = new Grid(5, 5);
+            Grid grid = new Grid(8, 8);
             Label[,] labelGrid = new Label[grid.width, grid.height];
             int x = 5;
             int y = 5;
@@ -97,7 +97,8 @@ namespace KillerSudoku
 
             FileManager file = new FileManager();
             //file.openFile( "C: \\Users\\Ignacio\\Desktop\\prueba.xml");
-            file.saveFile(grid,"C: \\Users\\Ignacio\\Desktop\\prueba.txt");
+            //file.saveFile(grid,"C: \\Users\\Ignacio\\Desktop\\prueba.txt");
+            file.saveFile(grid, "C:\\Users\\paulv\\Desktop\\prueba.txt");
         }
 
         private void clear()
