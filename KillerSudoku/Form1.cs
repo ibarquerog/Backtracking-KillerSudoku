@@ -44,7 +44,7 @@ namespace KillerSudoku
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
             clear();
-            grid = new Grid(5, 5);
+            grid = new Grid(11, 11);
             dibujar();
 
         }
@@ -60,7 +60,7 @@ namespace KillerSudoku
                 for (int k = 0; k < grid.width; k++)
                 {
                     Label label = new Label();
-                    //label.Text = grid.grid[i, k].Value.ToString();
+                    label.Text = grid.grid[i, k].Value.ToString();
                     label.Font = new Font("Roboto", 10);
                     label.TextAlign = ContentAlignment.BottomRight;
                     label.ForeColor = System.Drawing.Color.Black;
