@@ -57,7 +57,10 @@ namespace KillerSudoku
                 {
                     return false;
                 }
-
+                if (this.Cage11.Value != 0 && this.Cage21.Value != 0 && this.Cage31.Value != 0 && (this.Cage11.Value + this.Cage21.Value + this.Cage31.Value + gridValue != this.FigResult))
+                {
+                    return false;
+                }
             }
             else if(this.Operation == "x")
             {
@@ -83,6 +86,10 @@ namespace KillerSudoku
                     temporaryResult *= this.Cage41.Value;
                 }
                 if (temporaryResult * gridValue > this.FigResult)
+                {
+                    return false;
+                }
+                if (this.Cage11.Value != 0 && this.Cage21.Value != 0 && this.Cage31.Value != 0 && (temporaryResult * gridValue != this.FigResult))
                 {
                     return false;
                 }

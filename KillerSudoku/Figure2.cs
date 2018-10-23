@@ -47,7 +47,10 @@ namespace KillerSudoku
                 {
                     return false;
                 }
-
+                if (this.Cage11.Value != 0 && (this.Cage11.Value + gridValue != this.FigResult))
+                {
+                    return false;
+                }
             }
             else if (this.Operation == "x")
             {
@@ -65,6 +68,10 @@ namespace KillerSudoku
                     temporaryResult *= this.Cage21.Value;
                 }
                 if (temporaryResult * gridValue > this.FigResult)
+                {
+                    return false;
+                }
+                if (this.Cage11.Value != 0 && (temporaryResult * gridValue != this.FigResult))
                 {
                     return false;
                 }

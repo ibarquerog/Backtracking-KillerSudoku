@@ -43,7 +43,7 @@ namespace KillerSudoku
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
             //clear();
-            Grid grid = new Grid(8, 8);
+            Grid grid = new Grid(10, 10);
             Label[,] labelGrid = new Label[grid.width, grid.height];
             int x = 5;
             int y = 5;
