@@ -44,10 +44,13 @@ namespace KillerSudoku
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
             clear();
-            grid = new Grid(8, 8);
+            grid = new Grid(10, 10);
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             grid.solveSudoku();
+            watch.Stop();
+            Console.WriteLine(" ");
+            Console.WriteLine(watch.Elapsed.Milliseconds);
             dibujar();
-
         }
 
         private void dibujar()
