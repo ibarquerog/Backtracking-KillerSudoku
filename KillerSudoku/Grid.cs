@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace KillerSudoku
 {
@@ -919,8 +920,12 @@ namespace KillerSudoku
             return false;
         }
 
-        public bool solveSudoku()
+        public bool solveSudoku(CancellationToken ct)
         {
+            if (ct.IsCancellationRequested)
+            {
+                ct.ThrowIfCancellationRequested();
+            }
             MainFigure figure = new MainFigure();
             Cage cage = new Cage();
             bool isEmpty = true;
@@ -952,7 +957,7 @@ namespace KillerSudoku
                 if (isSafe(cage.X, cage.Y, num) == true && figure.isSafe(num) == true)
                 {
                     this.grid[cage.X, cage.Y].Value = num;
-                    if (solveSudoku())
+                    if (solveSudoku(ct))
                     {
                         return true;
                     }
