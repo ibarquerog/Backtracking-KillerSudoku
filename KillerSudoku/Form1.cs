@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -44,8 +46,7 @@ namespace KillerSudoku
         private void buttonGenerar_Click(object sender, EventArgs e)
         {
             clear();
-            grid = new Grid(8, 8);
-            grid.solveSudoku();
+            grid = new Grid(int.Parse(this.textBox1.Text), int.Parse(this.textBox1.Text));
             dibujar();
 
         }
@@ -66,7 +67,6 @@ namespace KillerSudoku
                     label.TextAlign = ContentAlignment.BottomRight;
                     label.ForeColor = System.Drawing.Color.Black;
                     label.BackColor = grid.grid[i, k].Color;
-                    //Console.WriteLine(grid.grid[i, k].Color.ToString());
                     label.Location = new Point(x, y);
                     label.BorderStyle = BorderStyle.Fixed3D;
                     label.Size = new Size(50, 50);
@@ -124,10 +124,61 @@ namespace KillerSudoku
             string file = openFileDialog1.FileName;
 
             FileManager fileToOpen = new FileManager();
-            grid = fileToOpen.openFile(file);
-            grid.solveSudoku();
+            this.grid = fileToOpen.openFile(file);
             dibujar();
             
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            var tokenSource = new CancellationTokenSource();
+            var token = tokenSource.Token;
+            bool solved = false;
+            Task t;
+            var tasks = new ConcurrentBag<Task>();
+
+
+            t = Task.Factory.StartNew(() => {
+                // Create some cancelable child tasks.  
+                Task tc;
+                for (int i = 1; i <=int.Parse(this.textBox2.Text) ; i++)
+                {
+                    tc = Task.Factory.StartNew(iteration => solved=grid.solveSudoku(token), i, token);
+                    if (solved)
+
+                    Console.WriteLine("Ejecutando task: {0}", tc.Id);
+
+                }
+                while (!solved)
+                {
+
+                }
+                tokenSource.Cancel();
+            },
+                                  token);
+            tasks.Add(t);
+
+
+            try
+            {
+                Task.WaitAll(tasks.ToArray());
+            }
+            catch (AggregateException ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                tokenSource.Dispose();
+            }
+            foreach (var task in tasks)
+                Console.WriteLine("Task {0} status is now {1}", task.Id, task.Status);
+
+            clear();
+            dibujar();
+        }
+
+
     }
 }
